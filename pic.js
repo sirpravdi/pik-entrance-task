@@ -474,13 +474,13 @@ function onSuggest(input, list, suggestions) {
 
   function calculateInsurance(price) {
 	if (price >= 45000) {
-		console.log('check');
 		let ins = 654 + (price * 1.5 * 0.05) / 11 + price * 0.0097;
-		console.log(Math.floor(ins/10) * 10);
+
 		return Math.floor(ins/10) * 10;
 	}
 
 	let ins = 454 + (price * 1.5 * 0.05) / 11 + price * 0.0097;
+	
 	return Math.ceil(ins/10) * 10;
 
   };
