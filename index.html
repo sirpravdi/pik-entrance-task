@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Оформление страховки</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="pic.css">
+        <link rel="stylesheet prefetch" href="https://cdn.rawgit.com/mfd/e7842774e037edf15919037594a79b2b/raw/665bdfc532094318449f1010323c84013d5af953/graphik.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script>
+            WebFont.load({
+              custom: {
+                families: ['Graphik'],
+                urls: ['https://cdn.rawgit.com/mfd/e7842774e037edf15919037594a79b2b/raw/665bdfc532094318449f1010323c84013d5af953/graphik.css']
+              }
+            });
+        </script>
+        <script defer src="pic.js"></script>
+    </head>
+    <body>
+        <main>
+            <form id="insurance" class="card">
+                <div class="tab tab_side1">
+                    <h1 class="tab__title">Шаг 1 из 2 | Личная информация</h1>
+                    <fieldset class="data">
+                        <div class="data__wrapper">
+                            <div class="field__autocomplete-container field__autocomplete-container_fio">
+                                <label for="fio" class="field">
+                                    <span class="field__title">Фамилия Имя Отчество</span>
+                                </label>
+                                <input id="fio" type="text" class="field__input" data-required data-letters>
+                                <ul id="fio_autocomplete" class="field__autocomplete"></ul>
+                                <span class="field__warning"></span>
+                            </div>
+                            <label for="date_of_birth" class="field field_date">
+                                <span class="field__title">Дата рождения</span>
+                                <input id="date_of_birth" type="text" class="field__input" data-required data-masked data-validator="age" data-mask="__.__.____" placeholder="XX.XX.XXXX">
+                                <span class="field__warning"></span>
+                            </label>
+                            <label for="email" class="field field_email">
+                                <span class="field__title field__title_comment">Почта 
+                                    <span class="field__comment">на этот адрес мы пришлем страховой полис</span>
+                                </span>
+                                <input id="email" type="email" class="field__input" data-required data-validator="email">
+                                <span class="field__warning"></span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="data data_passport">
+                        <legend class="data__title">Паспортные данные</legend>
+                        <div class="data__wrapper">
+                            <label for="passport" class="field">
+                                <span class="field__title field__title_comment">Серия и номер 
+                                    <span class="field__comment">только паспорт РФ</span>
+                                </span>
+                                <input id="passport" class="field__input" data-required data-numbers data-masked data-mask="____ ______" placeholder="____ ______">
+                                <span class="field__warning"></span>
+                            </label>
+                            <label for="issuing_authority" class="field">
+                                <span class="field__title">Кем выдан</span>
+                                <input id="issuing_authority" class="field__input" placeholder="Заполните точно как в паспорте" data-required data-letters>
+                                <span class="field__warning"></span>
+                            </label>
+                            <label for="date_of_issuing" class="field">
+                                <span class="field__title">Когда выдан</span>
+                                <input id="date_of_issuing" type="text" class="field__input" data-required data-masked data-validator="issuing" data-mask="__.__.____" placeholder="XX.XX.XXXX">
+                                <span class="field__warning"></span>
+                            </label>
+                            <label for="authority_code" class="field">
+                                <span class="field__title">Код подразделения</span>
+                                <input id="authority_code" class="field__input" placeholder="000-000" data-numbers data-masked data-mask="___-___">
+                                <span class="field__warning"></span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="data data_photos">
+                        <legend class="data__title">Фото документов 
+                            <span class="data__comment">jpg, png, pdf, не больше 40 мб</span>
+                        </legend>
+                        <div class="data__wrapper data__wrapper_centered">
+                            <label for="page2" class="document">
+                                <span class="document__plus">+</span>
+                                <span class="document__title">Паспорт, 2-3 стр.</span>
+                            </label>
+                            <input type="file" id="page2" data-required>
+                            <label for="page19" class="document">
+                                <span class="document__plus">+</span>
+                                <span class="document__title">Паспорт, 19 стр.</span>
+                            </label>
+                            <input type="file" id="page19" data-required>
+                            <label for="photo" class="document">
+                                <span class="document__plus">+</span>
+                                <span class="document__title">Фото с паспортом</span>
+                            </label>
+                            <input type="file" id="photo" data-required>
+                            <p class="data__information">Мы надежно храним и защищаем <br> ваши данные и не <br> передаем их третьим лицам</p>
+                        </div>
+                    </fieldset>
+                    <button type="button" id="btnTab1" class="btn btn_next">Далее</button>
+                </div>
+                <div class="tab tab_side2 tab_hidden">
+                    <h1 class="tab__title">Шаг 2 из 2 | О квартире</h1>
+                    <p class="tab__information">Мы составим договор аренды: в нем не будет <br> упоминания залога, но будет пункт о страховке</p>
+                    <fieldset class="data">
+                        <div class="data__wrapper">
+                            <div class="field__autocomplete-container">
+                                <label for="address" class="field">
+                                    <span class="field__title">Адрес: город, улица, дом, квартира</span>
+                                </label>
+                                <input id="address" class="field__input field__input_big" data-required>
+                                <ul id="address_autocomplete" class="field__autocomplete"></ul>
+                                <span class="field__warning"></span>
+                            </div>
+                            <label class="field">
+                                <span class="field__title">Стоимость аренды</span> 
+                                <span class="field__commented-input">
+                                    <input id="price" class="field__input field__input_small" data-required data-validator="price" data-numbers> 
+                                    <span class="field__info">Стоимость <br> страховки <br> <b></b> <br> (платит арендатор)</span>
+                                </span>
+                                <span class="field__warning field__warning_left"></span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="data data_documents">
+                        <p class="data__title data__title_documents">Документы 
+                            <span class="data__subtitle">договор аренды, доп. соглашения</span>
+                        </p>
+                        <div class="data__wrapper data__wrapper_documents">
+                            <label for="document1" class="document">
+                                <span class="document__plus">+</span>
+                                <span class="document__title">выбрать файл</span>
+                            </label>
+                            <input id="document1" type="file" data-required>
+                            <label for="document2" class="document">
+                                <span class="document__plus">+</span>
+                                <span class="document__title">выбрать файл</span>
+                            </label>
+                            <input id="document2" type="file" data-required>
+                            <label for="document3" class="document">
+                                <span class="document__plus">+</span>
+                                <span class="document__title">выбрать файл</span>
+                            </label>
+                            <input id="document3" type="file" data-required>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn btn_next">Далее</button>
+                    <button type="button" class="btn btn_prev">Назад</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
