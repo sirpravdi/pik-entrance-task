@@ -515,9 +515,13 @@ input:-webkit-autofill:active {
         margin: 10px 0;
     }
 
+    .tab__information {
+        margin-bottom: 20px;
+    }
+
 }
 
-@media (max-width: 1500px) { 
+@media (max-width: 1000px) { 
     .tab_side2 .btn_next {
         margin-right: 20px;
     }
