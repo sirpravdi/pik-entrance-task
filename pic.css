@@ -17,21 +17,22 @@ body {
 }
 
 main {
-    margin: auto;
-    font-family: Graphik;
-    visibility: hidden;
-}
-
-.wf-active main {
-    visibility: visible;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: .3fr 1fr .3fr;
+        grid-template-columns: .3fr 1fr .3fr;
+    grid-template-areas: '. card .';
+    margin: 10vh 0;
+    font-family: Graphik, sans-serif;
 }
 
 .card {
-    width: 940px;
-    height: 877px;
+    max-width: 940px;
+    grid-area: card;
+    min-height: 877px;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 70px 0 0 80px;
+    padding: 70px 0 52px 80px;
     background-color: #fff;
     border-radius: 5px;
     position: relative;
@@ -94,6 +95,7 @@ main {
     display: inline-flex;
     -ms-flex-flow: column;
         flex-flow: column;
+    max-width: 380px;
 }
 
 .field:nth-of-type(2n) {
@@ -126,17 +128,25 @@ main {
     box-sizing: border-box;
     border: 1px solid #CCD6D8;
     border-radius: 5px;
-    padding: 20px;
-    margin-top: 5px;
+    padding: 20px 35px 20px 20px;
     font-size: 18px;
     color: #484848;
 }
 
-.field__input:focus {
+.field__input_correct {
+    border-color: #4285F4;
+}
+
+.field__input_focus {
     box-shadow: 0px 0px 5px rgba(66, 133, 244, 0.5);
     border-color: rgba(66, 134, 244, 0.5);
     border-radius: 5px;
     outline: none;
+}
+
+.field__input_warning {
+    box-shadow: 0px 0px 5px rgba(255, 115, 115, 0.5);
+    border-color: rgba(255, 115, 115, 0.5);
 }
 
 .field__input_big {
@@ -194,7 +204,7 @@ main {
     margin-bottom: 10px;
     font-size: 25px;
     color: #484848;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .data__comment {
@@ -212,6 +222,7 @@ main {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
+    position: relative;
     width: 140px;
     height: 60px;
     background: #FFFFFF;
@@ -252,8 +263,16 @@ main {
     cursor: pointer;
 }
 
-.document:nth-of-type(2) {
-    margin: 0 10px;
+.document:nth-of-type(n) {
+    margin-right: 10px;
+}
+
+.document:nth-of-type(n+6) {
+    margin-top: 10px;
+}
+
+.document:last-of-type {
+    margin-right: 0;
 }
 
 .document__title {
@@ -263,8 +282,9 @@ main {
 
 .document__plus {
     color: #5491F5;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 100;
+    font-family: initial
 }
 
 .data__information {
@@ -286,8 +306,9 @@ main {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    -ms-flex-line-pack: center;
-        align-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     font-size: 18px;
     border: 1px solid rgb(84, 145, 245);
 }
@@ -355,6 +376,7 @@ main {
     font-size: 18px;
     vertical-align: top;
     font-weight: normal;
+    margin-right: 20px;
 }
 
 .data__subtitle {
@@ -367,16 +389,15 @@ main {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    margin-left: 20px;
 }
 
-.data__wrapper_documents .document:nth-of-type(2) {
+.tab_side1 .document:nth-of-type(2n) {
     margin: 0 20px;
 }
 
 .field__warning {
     font-size: 13px;
-    height: 13px;
+    min-height: 13px;
     color: #F44336;
     text-align: right;
     margin-top: 5px;
@@ -385,7 +406,6 @@ main {
 
 .field__warning_left {
     text-align: left;
-    white-space: pre;
 }
 
 .card_flip {
@@ -410,6 +430,7 @@ main {
         flex-flow: column;
     position: relative;
     margin-right: 20px;
+    max-width: 380px;
 }
 
 .field__autocomplete {
@@ -438,4 +459,66 @@ main {
 
 .field__autocomplete-item:hover {
     cursor: pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.field__autofill {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 5px;
+}
+
+.field__check {
+    position: absolute;
+    right: 14px;
+    visibility: hidden;
+}
+
+.document__close {
+    display: block;
+    position: absolute;
+    top: 0;
+    color: #2F8FFF;
+    font-size: 12px;
+    right: 8px;
+    visibility: hidden;
+}
+
+.document_picked .document__close,
+.field__input_correct ~ .field__check {
+    visibility: visible;
+}
+
+@media (max-width: 1500px) {
+    .data__wrapper {
+        -ms-flex-flow: column;
+            flex-flow: column;
+    }
+
+    .field:nth-of-type(2n) {
+        margin: 0;
+    }
+
+    .document:nth-of-type(n),
+    .tab_side1 .document:nth-of-type(2n) {
+        margin: 10px 0;
+    }
+
+}
+
+@media (max-width: 1500px) { 
+    .tab_side2 .btn_next {
+        margin-right: 20px;
+    }
 }
